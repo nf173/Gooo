@@ -1,0 +1,66 @@
+/**index.wxss**/
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  position: relative;
+  background: ghostwhite;
+}
+
+.img-wrap {
+  position: relative;
+  width: 100%;
+}
+.img-wrap .ae86 {
+  filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.4));
+  transition: filter .3s ease;
+}
+.img-wrap .ae86:hover {
+  filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.4));
+}
+.img-wrap .cover {
+  z-index: 1;
+  position: absolute;
+  top: 16%;
+  left: 36%;
+  height: 40rpx;
+  background-color: rgba(194, 193, 200, 1);
+}
+.img-wrap .cover text {
+  padding-left: 0.5em;
+  letter-spacing: 0.5em;
+  text-align: center;
+  font-weight: bold;
+  font-size: 32rpx;
+}
+
+.title {
+  font-size: 80rpx;
+  font-weight: bold;
+}
+
+.btns {
+  display: flex;
+  flex-direction: column;
+}
+.btns .btn {
+  margin: 10px 0;
+  text-align: center;
+  border: 1px solid #000;
+  padding: 8px 14px;
+  min-width: 150px;
+  line-height: 1.5em;
+  transition: all .2s ease;
+}
+.btns .btn:nth-child(1) {
+  background: #000;
+  color: #fff;
+}
+.btns .btn:active {
+  opacity: .7;
+}
+
+
+
+

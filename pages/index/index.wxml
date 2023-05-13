@@ -1,0 +1,14 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="img-wrap">
+    <image class="ae86" style="width: 750rpx; height: 432rpx; display: inline-block; box-sizing: border-box" src="http://rufnhtzkr.hd-bkt.clouddn.com/TYDF.png" mode="widthFix" />
+    <view class="cover">
+      <text>科一速记宝典</text>
+    </view>
+  </view>
+
+  <view class="btns">
+    <view class="btn start" bindtap="handleStart">随机十题</view>
+    <view class="btn">错题集</view>
+  </view>
+</view>

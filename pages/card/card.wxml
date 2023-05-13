@@ -1,0 +1,82 @@
+<!--pages/card/card.wxml-->
+<view class="container">
+  <swiper class="card-swiper" current="currentIndex" bindanimationfinish="swiperChange">
+    <block wx:for="{{ questionsList }}" wx:key="index">
+      <swiper-item>
+        <scroll-view scroll-y="true" style="height: 100%">
+          <view class="swiper-item">
+            <image class="pic" src="{{ item.question.titlePic }}" mode="widthFix"  wx:if="{{item.question.titlePic}}"/>
+
+            <view class="title">
+              <text class="title-tag">{{ item.question.titleType }}</text>
+              <text>{{ item.question.title }}</text>
+            </view>
+
+            <view class="options" wx:if="{{ item.question.titleType !== '多选' }}">
+              <view
+              class="opt-item {{ idx === item.currentSelectedIndex ? (item.selectedIsTrue ? 'opt-true' : 'opt-false') : '' }}"
+              wx:if="{{opt.value}}"
+              wx:for="{{ item.question.opts }}"
+              wx:for-item="opt"
+              wx:for-index="idx"
+              wx:key="idx"
+              data-opt="{{ opt }}"
+              data-idx="{{ idx }}"
+              data-index="{{ index }}"
+              data-id="{{ item.question.id }}"
+              bindtap="handleRadioClick">
+                <text>{{ opt.value }}</text>
+              </view>
+            </view>
+
+            <view class="options" wx:else>
+              <view
+              class="opt-item {{ opt.isChecked ? 'checked' : '' }}"
+              wx:for="{{ item.question.opts }}" 
+              wx:for-item="opt" 
+              wx:for-index="idx"
+              wx:key="idx"
+              data-opt="{{ opt }}"
+              data-idx="{{ idx }}"
+              data-index="{{ index }}"
+              bindtap="handleCheckboxClick">
+                <text>{{ opt.value }}</text>
+              </view>
+              <view 
+              class="checked-yes" 
+              wx:if="{{ item.checkeds.length != 0 }}"
+              data-id="{{ item.question.id }}"
+              bindtap="checkboxSubmit">
+                确 定
+              </view>
+            </view>
+
+            <view class="result" wx:if="{{ item.disabled }}">
+              <view class="result-text">
+                <view>答案 <text class="opt-true">{{ item.answers.value }}</text></view>
+                <view>您选择 <text class="{{ item.selectedIsTrue ? 'opt-true' : 'opt-false' }}">{{ item.currentSelected }}</text></view>
+              </view>
+              <view class="result-tip {{ item.selectedIsTrue ? 'opt-true' : 'opt-false' }}">
+                <text wx:if="{{ item.selectedIsTrue }}">答对咯</text>
+                <text wx:else>答错啦</text>
+              </view>
+            </view>
+
+            <view class="explain" wx:if="{{ item.disabled }}">
+              <text class="explain-title">题目解析</text>
+              <rich-text 
+              class="explain-content" 
+              nodes="{{ item.answers.explain }}">
+              </rich-text>
+            </view>
+
+            <view class="btns" wx:if="{{ currentIndex === 9 && item.disabled }}">
+              <view class="btn" bindtap="handleGetMore">再来十题</view>
+              <view class="btn" bindtap="handleBackHome">返回首页</view>
+            </view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
